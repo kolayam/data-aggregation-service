@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: data-aggregation-service
-          image: nimbleplatform/data-aggregation-service:latest
+          image: nimbleplatform/data-aggregation-service:IMAGE_TAG
           env:
             - name: FRONTEND_URL
               value: "https://nimble.kolayam.co.uk/"
