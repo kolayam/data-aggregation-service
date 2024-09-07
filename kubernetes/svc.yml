@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: nimble-platform
+  labels:
+    app: data-aggregation-service
+  name: data-aggregation-service
+spec:
+  ports:
+    - name: "http"
+      protocol: TCP
+      port: 9100
+      targetPort: 9100
+  selector:
+    app: data-aggregation-service

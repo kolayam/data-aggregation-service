@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-aggregation-service
+  namespace: nimble-platform
+  labels:
+    app: nimble-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-aggregation-service
+  template:
+    metadata:
+      labels:
+        app: data-aggregation-service
+    spec:
+      containers:
+        - name: data-aggregation-service
+          image: nimbleplatform/data-aggregation-service:latest
+          env:
+            - name: FRONTEND_URL
+              value: "https://nimble.kolayam.co.uk/"
+            - name: INDEXING_SERVICE_URL
+              value: "http://indexing-service"
+            - name: INDEXING_SERVICE_PORT
+              value: "8080"
+            - name: EUREKA_SERVICE_URL
+              value: "http://service-discovery:8761/eureka"
+            - name: NIMBLE_INSTANCE_NAME
+              value: "data-aggregation-service"
+            - name: DELEGATE_SERVICE_BASE_URL
+              value: "http://data-aggregation-service"
+            - name: DELEGATE_SERVICE_PORT
+              value: "9265"
+            - name: CONFIG_SERVER_URI
+              value: "http://config-server:8888"
+            - name: CONFIG_SERVER_FAILFAST
+              value: "true"
+            - name: DISCOVERY_ENABLED
+              value: "true"
+            - name: DISCOVERY_SERVER_URI
+              value: "http://service-discovery:8761"
+            - name: DISCOVERY_PREFER_IP
+              value: "false"
+            - name: IDENTITY_SERVICE_URL
+              value: "http://identity-service:9096"
+            - name: BUSINESS_PROCESS_SERVICE_URL
+              value: "http://business-process-service:8081"
+            - name: DATAAGGREGATION_SERVICE_URL
+              value: "http://data-aggregation-service:9100"
+            - name: CATALOGUE_SERVICE_URL
+              value: "http://catalog-service-srdc:8095"
+          ports:
+            - containerPort: 9100

@@ -218,6 +218,7 @@ public class AggregateController {
         Map<Integer,Double> averageCollabTimePurchasesForMonths = businessProcessClient.getCollaborationTimeForCompanyForMonths(BUYER,Integer.parseInt(companyID),bearerToken);
         Map<Integer,Double> averageCollabTimeSalesForMonths = businessProcessClient.getCollaborationTimeForCompanyForMonths(SELLER,Integer.parseInt(companyID),bearerToken);
         Map<Integer,Double> averageCollabTimeForMonths = new HashMap<>();
+        logger.info("averageCollabTimeSalesForMonths {}, averageCollabTimePurchasesForMonths {}",averageCollabTimeSalesForMonths.values().size(),averageCollabTimePurchasesForMonths.values().size());
         averageCollabTimePurchasesForMonths.forEach((month, value) -> averageCollabTimeForMonths.put(month, calculateAverage(Arrays.asList(averageCollabTimeSalesForMonths.get(month), value))));
         CollaborationTime collaborationTime = new CollaborationTime(averageCollabTime, averageCollabTimePurchases, averageCollabTimeSales,averageCollabTimeForMonths,
                 averageCollabTimePurchasesForMonths,averageCollabTimeSalesForMonths);
