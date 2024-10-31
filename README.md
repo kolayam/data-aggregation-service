@@ -25,3 +25,4 @@ for running the application locally.
 
 * **Swagger Documentation**: [http://localhost:9100/swagger-ui.html#/](http://localhost:9100/swagger-ui.html#/)
 
+trigger deploy
